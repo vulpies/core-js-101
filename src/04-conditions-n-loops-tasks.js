@@ -1,67 +1,28 @@
-/* *************************************************************************************************
- *                                                                                                *
- * Please read the following tutorial before implementing tasks:                                   *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling  *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration              *
- *                                                                                                *
- ************************************************************************************************ */
-
-
-/**
- * Returns the 'Fizz','Buzz' or an original number using the following rules:
- * 1) return original number
- * 2) but if number multiples of three return 'Fizz'
- * 3) for the multiples of five return 'Buzz'
- * 4) for numbers which are multiples of both three and five return 'FizzBuzz'
- *
- * @param {number} num
- * @return {any}
- *
- * @example
- *   2 =>  2
- *   3 => 'Fizz'
- *   5 => 'Buzz'
- *   4 => 4
- *  15 => 'FizzBuzz'
- *  20 => 'Buzz'
- *  21 => 'Fizz'
- *
- */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+/* eslint-disable no-plusplus */
+/* eslint-disable no-else-return */
+function getFizzBuzz(num) {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return 'FizzBuzz';
+  } else if (num % 3 === 0) {
+    return 'Fizz';
+  } else if (num % 5 === 0) {
+    return 'Buzz';
+  } else return num;
 }
 
-
-/**
- * Returns the factorial of the specified integer n.
- *
- * @param {number} n
- * @return {number}
- *
- * @example:
- *   1  => 1
- *   5  => 120
- *   10 => 3628800
- */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  if (n === 0) {
+    return 1;
+  }
+  return n * getFactorial(n - 1);
 }
 
-
-/**
- * Returns the sum of integer numbers between n1 and n2 (inclusive).
- *
- * @param {number} n1
- * @param {number} n2
- * @return {number}
- *
- * @example:
- *   1,2   =>  3  ( = 1+2 )
- *   5,10  =>  45 ( = 5+6+7+8+9+10 )
- *   -1,1  =>  0  ( = -1 + 0 + 1 )
- */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let sum = 0;
+  for (let i = n1; i <= n2; i++) {
+    sum += i;
+  }
+  return sum;
 }
 
 

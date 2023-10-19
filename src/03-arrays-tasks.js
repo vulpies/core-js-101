@@ -124,26 +124,12 @@ function sortCitiesArray(arr) {
   return arr.sort((a, b) => (a.country.localeCompare(b.country) === 0 ? a.city.localeCompare(b.city) : a.country.localeCompare(b.country)));
 }
 
-/**
- * Creates an identity matrix of the specified size
- *
- * @param {number} n
- * @return {array}
- *
- * @example
- *     1  => [[1]]
- *
- *     2 => [[1,0],
- *           [0,1]]
- *
- *          [[1,0,0,0,0],
- *           [0,1,0,0,0],
- *     5 =>  [0,0,1,0,0],
- *           [0,0,0,1,0],
- *           [0,0,0,0,1]]
- */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (_, i) => {
+    const arr = Array(n).fill(0);
+    arr[i] = 1;
+    return arr;
+  });
 }
 
 function getIntervalArray(start, end) {
@@ -154,56 +140,18 @@ function distinct(arr) {
   return [...new Set(arr)];
 }
 
-/**
- * Groups elements of the specified array by key.
- * Returns multimap of keys extracted from array elements via keySelector callback
- * and values extracted via valueSelector callback.
- * See: https://en.wikipedia.org/wiki/Multimap
- *
- * @param {array} array
- * @param {Function} keySelector
- * @param {Function} valueSelector
- * @return {Map}
- *
- * @example
- *   group([
- *      { country: 'Belarus', city: 'Brest' },
- *      { country: 'Russia', city: 'Omsk' },
- *      { country: 'Russia', city: 'Samara' },
- *      { country: 'Belarus', city: 'Grodno' },
- *      { country: 'Belarus', city: 'Minsk' },
- *      { country: 'Poland', city: 'Lodz' }
- *     ],
- *     item => item.country,
- *     item => item.city
- *   )
- *            =>
- *   Map {
- *    "Belarus" => ["Brest", "Grodno", "Minsk"],
- *    "Russia" => ["Omsk", "Samara"],
- *    "Poland" => ["Lodz"]
- *   }
- */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  return array.reduce((country, sity) => {
+    const key = keySelector(sity);
+    const value = valueSelector(sity);
+    const item = country.get(key) || [];
+    item.push(value);
+    return country.set(key, item);
+  }, new Map());
 }
 
-
-/**
- * Projects each element of the specified array to a sequence
- * and flattens the resulting sequences into one array.
- *
- * @param {array} arr
- * @param {Function} childrenSelector, a transform function to apply to each element
- *                                     that returns an array of children
- * @return {array}
- *
- * @example
- *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
- *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
- */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.reduce((item, curr) => item.concat(childrenSelector(curr)), []);
 }
 
 
