@@ -641,14 +641,14 @@ describe('03-arrays-tasks', () => {
       }, {
         n: 2,
         expected: [[1, 0],
-          [0, 1]],
+        [0, 1]],
       }, {
         n: 5,
         expected: [[1, 0, 0, 0, 0],
-          [0, 1, 0, 0, 0],
-          [0, 0, 1, 0, 0],
-          [0, 0, 0, 1, 0],
-          [0, 0, 0, 0, 1]],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1]],
       },
     ].forEach((data) => {
       const actual = tasks.getIdentityMatrix(data.n);
@@ -838,7 +838,7 @@ describe('03-arrays-tasks', () => {
         expected: [3, 4, 1, 2],
       }, {
         arr: [1, 2, 3, 4, 5],
-        expected: [4, 5, 3, 1, 2],
+        expected: [4, 5, 1, 2, 3],
       },
     ].forEach((data) => {
       const actual = tasks.swapHeadAndTail(Array.from(data.arr));

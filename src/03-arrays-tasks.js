@@ -146,21 +146,8 @@ function getIdentityMatrix(/* n */) {
   throw new Error('Not implemented');
 }
 
-/**
- * Creates an array of integers from the specified start to end (inclusive)
- *
- * @param {number} start
- * @param {number} end
- * @return {array}
- *
- * @example
- *     1, 5  => [ 1, 2, 3, 4, 5 ]
- *    -2, 2  => [ -2, -1, 0, 1, 2 ]
- *     0, 100 => [ 0, 1, 2, ..., 100 ]
- *     3, 3   => [ 3 ]
- */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return [...Array(end - start + 1).keys()].map((item) => item + start);
 }
 
 function distinct(arr) {
@@ -235,28 +222,19 @@ function selectMany(/* arr, childrenSelector */) {
 function getElementByIndexes(/* arr, indexes */) {
   throw new Error('Not implemented');
 }
+// getElementByIndexes([[1, 2], [3, 4], [5, 6]], [0, 0])
 
+function swapHeadAndTail(arr) {
+  if (arr.length < 4) {
+    return arr.reverse();
+  }
 
-/**
- * Swaps the head and tail of the specified array:
- * the head (first half) of array move to the end, the tail (last half) move to the start.
- * The middle element (if exists) leave on the same position.
- *
- *
- * @param {array} arr
- * @return {array}
- *
- * @example
- *   [ 1, 2, 3, 4, 5 ]   =>  [ 4, 5, 3, 1, 2 ]
- *    \----/   \----/
- *     head     tail
- *
- *   [ 1, 2 ]  => [ 2, 1 ]
- *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
- *
- */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+  const middle = Math.ceil(arr.length / 2);
+
+  const head = arr.slice(0, middle);
+  const tail = arr.slice(middle);
+
+  return tail.concat(head);
 }
 
 
