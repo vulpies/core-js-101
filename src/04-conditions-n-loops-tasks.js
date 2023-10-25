@@ -25,24 +25,8 @@ function getSumBetweenNumbers(n1, n2) {
   return sum;
 }
 
-
-/**
- * Returns true, if a triangle can be built with the specified sides a, b, c
- * and false in any other ways.
- *
- * @param {number} a
- * @param {number} b
- * @param {number} c
- * @return {bool}
- *
- * @example:
- *   1,2,3    =>  false
- *   3,4,5    =>  true
- *   10,1,1   =>  false
- *   10,10,10 =>  true
- */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  return (a + b > c) && (a + c > b) && (c + b > a);
 }
 
 
@@ -113,83 +97,34 @@ function isInsideCircle(/* circle, point */) {
   throw new Error('Not implemented');
 }
 
-
-/**
- * Returns the first non repeated char in the specified strings otherwise returns null.
- *
- * @param {string} str
- * @return {string}
- *
- * @example:
- *   'The quick brown fox jumps over the lazy dog' => 'T'
- *   'abracadabra'  => 'c'
- *   'entente' => null
- */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i++) {
+    const s = str.charAt(i);
+    if (str.indexOf(s) === str.lastIndexOf(s)) {
+      return s;
+    }
+  }
+  return null;
 }
 
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const maxNum = Math.max(a, b);
+  const minNum = Math.min(a, b);
 
-/**
- * Returns the string representation of math interval,
- * specified by two points and include / exclude flags.
- * See the details: https://en.wikipedia.org/wiki/Interval_(mathematics)
- *
- * Please take attention, that the smaller number should be the first in the notation
- *
- * @param {number} a
- * @param {number} b
- * @param {bool} isStartIncluded
- * @param {bool} isEndIncluded
- * @return {string}
- *
- * @example
- *   0, 1, true, true   => '[0, 1]'
- *   0, 1, true, false  => '[0, 1)'
- *   0, 1, false, true  => '(0, 1]'
- *   0, 1, false, false => '(0, 1)'
- * Smaller number has to be first :
- *   5, 3, true, true   => '[3, 5]'
- *
- */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+  const startBracket = isStartIncluded ? '[' : '(';
+  const endBracket = isEndIncluded ? ']' : ')';
+
+  return `${startBracket}${minNum}, ${maxNum}${endBracket}`;
 }
 
-
-/**
- * Reverse the specified string (put all chars in reverse order)
- *
- * @param {string} str
- * @return {string}
- *
- * @example:
- * 'The quick brown fox jumps over the lazy dog' => 'god yzal eht revo spmuj xof nworb kciuq ehT'
- * 'abracadabra' => 'arbadacarba'
- * 'rotator' => 'rotator'
- * 'noon' => 'noon'
- */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
-
-/**
- * Reverse the specified integer number (put all digits in reverse order)
- *
- * @param {number} num
- * @return {number}
- *
- * @example:
- *   12345 => 54321
- *   1111  => 1111
- *   87354 => 45378
- *   34143 => 34143
- */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const str = num.toString();
+  return Number(str.split('').reverse().join(''));
 }
-
 
 /**
  * Validates the CCN (credit card number) and return true if CCN is valid
